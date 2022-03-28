@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         int[] a;
-        // DataSet.generate(10000);
+        DataSet.generate(1000);
 
         FileWriter outWriter = new FileWriter(args[1], false);
         outWriter.write("Order, TimeTaken\n");
