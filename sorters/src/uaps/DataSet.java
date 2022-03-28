@@ -1,10 +1,10 @@
-package pfk;
+package uaps;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class DataSet {
-    public static int[] generate(int n) throws IOException {
+    public static void generate(int n) throws IOException {
         int[] a = new int[n];
 
         FileWriter outWriter = new FileWriter("data1.txt", false);
@@ -14,6 +14,5 @@ public class DataSet {
             outWriter.write(randNbr + "\n");
         }
         outWriter.close();
-        return a;
     }
 }
