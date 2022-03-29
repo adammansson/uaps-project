@@ -4,14 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         int[] a;
-        // DataSet.generate(1000);
+        DataSet.generate(1000);
 
         FileWriter outWriter = new FileWriter(args[1], false);
         outWriter.write("Order, TimeTaken\n");
@@ -20,9 +20,11 @@ public class Main {
             a = loadFromFile(args[0]);
             long t0 = System.nanoTime();
 
-            InsertionSorter.sort(a);
+            // InsertionSorter.sort(a);
             // int[] b = new int[a.length];
             // MergeSorter.sort(a, b, 0, a.length - 1);
+            TreeSorter.sort(a);
+            System.out.println(Arrays.toString(a));
 
             long t1 = System.nanoTime();
             long timeTaken = t1 - t0;
@@ -34,13 +36,12 @@ public class Main {
     public static int[] loadFromFile(String filename) throws FileNotFoundException {
         File input = new File("../" + filename);
         Scanner inScanner = new Scanner(input);
-        LinkedList<Integer> list = new LinkedList<Integer>();
+
+        int[] arr = new int[1000];
+        int i = 0;
         while (inScanner.hasNext()) {
-            list.add(Integer.parseInt(inScanner.nextLine()));
-        }
-        int[] arr = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            arr[i] = list.get(i);
+            arr[i] = (Integer.parseInt(inScanner.nextLine()));
+            i++;
         }
         return arr;
     }
