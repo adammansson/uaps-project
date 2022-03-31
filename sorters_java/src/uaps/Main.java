@@ -13,6 +13,7 @@ public class Main {
         int[] a;
         DataSet.generate(1000);
 
+        /*
         FileWriter outWriter = new FileWriter(args[1], false);
         outWriter.write("Order, TimeTaken\n");
 
@@ -31,6 +32,8 @@ public class Main {
             outWriter.write(i + ", " + timeTaken + "\n");
         }
         outWriter.close();
+
+         */
     }
 
     public static int[] loadFromFile(String filename) throws FileNotFoundException {

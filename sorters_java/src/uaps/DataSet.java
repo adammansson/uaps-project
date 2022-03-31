@@ -15,7 +15,7 @@ public class DataSet {
 
         Collections.shuffle(list);
 
-        FileWriter outWriter = new FileWriter("../data1.txt", false);
+        FileWriter outWriter = new FileWriter("../small_data.txt", false);
         for (int i : list) {
             outWriter.write(i + "\n");
         }

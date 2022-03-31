@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void sort(int arr[], int length)
 {
@@ -27,30 +28,46 @@ void printArray(int arr[], int length)
 	}
 }
 
-int main()
+int main(void)
 {
-	int size = 1000;
+	int size = 100000;
 
-	char ch;
-	char *file_name;
-	FILE *fp;
-	file_name = "../../data1.txt";
+	FILE *in_file;
+	char *in_filename;
+	in_filename = "../../data.txt";
+	in_file = fopen(in_filename, "r");
 
-	fp = fopen(file_name, "r");
+	FILE *out_file;
+	char *out_filename;
+	out_filename = "../../output.txt";
+
 	int arr[size];
 
 	int i = 0;
 	int ctr = 0;
-	while (!feof (fp))
+	while (!feof (in_file))
 	{
-		fscanf(fp, "%d", &i);
+		fscanf(in_file, "%d", &i);
 		arr[ctr] = i;
 		ctr++;
 	}
 
-	sort(arr, size);
+	struct timespec start, end;
+	double dif;
+	for (int k = 0; k < 1; k++)
+	{
+		clock_gettime(CLOCK_MONOTONIC, &start);
+		
+		sort(arr, size);
 
-	printArray(arr, size);
+		clock_gettime(CLOCK_MONOTONIC, &end);
+
+		dif = (end.tv_sec - start.tv_sec) * 1e9;
+		dif = (dif + (end.tv_nsec - start.tv_nsec)) * 1e-9;
+	}
+	printf("%f\n", dif);
+
+	fclose(in_file);
 
 	return 0;
 }

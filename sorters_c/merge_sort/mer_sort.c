@@ -60,12 +60,12 @@ void printArray(int arr[], int length)
 
 int main()
 {
-	int size = 1000;
+	int size = 100000;
 
 	char ch;
 	char *file_name;
 	FILE *fp;
-	file_name = "../../data1.txt";
+	file_name = "../../data.txt";
 
 	fp = fopen(file_name, "r");
 	int arr[size];
