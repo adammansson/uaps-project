@@ -1,4 +1,4 @@
-package uaps;
+package old;
 
 public class InsertionSorter {
     public static void sort(int[] arr) {

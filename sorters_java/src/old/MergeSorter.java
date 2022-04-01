@@ -1,4 +1,4 @@
-package uaps;
+package old;
 
 public class MergeSorter {
     public static void merge(int[] input, int[] helper, int first, int mid, int last) {

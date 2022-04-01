@@ -1,7 +1,6 @@
-package uaps;
+package old;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 
 public class TreeSorter {
