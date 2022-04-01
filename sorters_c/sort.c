@@ -76,6 +76,20 @@ void merge_sort(int input[], int helper[], int length, int first, int last)
 	}
 }
 
+void load_array(FILE *in_file, int arr[])
+{
+	rewind(in_file);
+
+	int i = 0;
+	int ctr = 0;
+	while (!feof(in_file))
+	{
+		fscanf(in_file, "%d", &i);
+		arr[ctr] = i;
+		ctr++;
+	}
+}
+
 int main(void)
 {
 	int size = 100000;
@@ -87,45 +101,30 @@ int main(void)
 
 	FILE *out_file;
 	char *out_filename;
-	out_filename = "../output.txt";
+	out_filename = "../output_c.txt";
 	out_file = fopen(out_filename, "w");
-
-	int arr[size];
-
-	int i = 0;
-	int ctr = 0;
-	while (!feof (in_file))
-	{
-		fscanf(in_file, "%d", &i);
-		arr[ctr] = i;
-		ctr++;
-	}
 
 	struct timespec start, end;
 	int dif;
 
-	fprintf(out_file, "nbr, time\n");
+	int arr[size];
 
-	for (int k = 0; k < 10; k++)
+	fprintf(out_file, "nbr, time in ns\n");
+
+	for (int k = 1; k <= 1; k++)
 	{
+		load_array(in_file, arr);
+
 		clock_gettime(CLOCK_MONOTONIC, &start);
 		
-		// insertion_sort(arr, size);
+		insertion_sort(arr, size);
         
-        	int helper[size];
-        	merge_sort(arr, helper, size, 0, size - 1);
+        	// int helper[size];
+        	// merge_sort(arr, helper, size, 0, size - 1);
 
 		clock_gettime(CLOCK_MONOTONIC, &end);
-
 		dif = (end.tv_nsec - start.tv_nsec);
-
-		fprintf(out_file, "%d, %d\n", k+1, dif);
-	}
-	printf("%d\n", dif);
-
-	for (int i = 0; i < 3; i++)
-	{
-		printf("%d\n", arr[i]);
+		fprintf(out_file, "%d, %d\n", k, dif);
 	}
 
 	fclose(in_file);
