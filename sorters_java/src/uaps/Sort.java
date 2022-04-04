@@ -76,7 +76,7 @@ public class Sort {
 
     public static void main(String[] args) throws IOException {
         FileWriter outWriter = new FileWriter(args[1], false);
-        outWriter.write("nbr, time in ns\n");
+        outWriter.write("nbr, time in s\n");
 
         for (int i = 1; i <= Integer.parseInt(args[2]); i++) {
             int[] a = loadFromFile(args[0]);
