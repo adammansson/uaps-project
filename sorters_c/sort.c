@@ -105,7 +105,7 @@ int main(void)
 	out_file = fopen(out_filename, "w");
 
 	struct timespec start, end;
-	int dif;
+	unsigned long dif;
 
 	int arr[size];
 
@@ -119,12 +119,12 @@ int main(void)
 		
 		insertion_sort(arr, size);
         
-        	// int helper[size];
-        	// merge_sort(arr, helper, size, 0, size - 1);
+    // int helper[size];
+    // merge_sort(arr, helper, size, 0, size - 1);
 
 		clock_gettime(CLOCK_MONOTONIC, &end);
 		dif = (end.tv_nsec - start.tv_nsec);
-		fprintf(out_file, "%d, %d\n", k, dif);
+		fprintf(out_file, "%d, %lu\n", k, dif);
 	}
 
 	fclose(in_file);
