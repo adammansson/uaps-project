@@ -99,13 +99,16 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+	// Number of lines in input file
 	int size = 100000;
 
+	// Get input file from first argument
 	FILE *in_file;
 	char *in_filename;
 	in_filename = argv[1];
 	in_file = fopen(in_filename, "r");
 
+	// Get output file from second argument
 	FILE *out_file;
 	char *out_filename;
 	out_filename = argv[2];
