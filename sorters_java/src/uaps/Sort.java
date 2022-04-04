@@ -60,8 +60,8 @@ public class Sort {
         }
     }
 
-    public static int[] loadFromFile() throws FileNotFoundException {
-        File input = new File("../data.txt");
+    public static int[] loadFromFile(String fileName) throws FileNotFoundException {
+        File input = new File(fileName);
         Scanner inScanner = new Scanner(input);
 
         int[] arr = new int[100000];
@@ -70,15 +70,16 @@ public class Sort {
             arr[i] = (Integer.parseInt(inScanner.nextLine()));
             i++;
         }
+        inScanner.close();
         return arr;
     }
 
     public static void main(String[] args) throws IOException {
-        FileWriter outWriter = new FileWriter("../output_java.txt", false);
+        FileWriter outWriter = new FileWriter(args[1], false);
         outWriter.write("nbr, time in ns\n");
 
-        for (int i = 1; i <= 1; i++) {
-            int[] a = loadFromFile();
+        for (int i = 1; i <= Integer.parseInt(args[2]); i++) {
+            int[] a = loadFromFile(args[0]);
             long t0 = System.nanoTime();
 
             insertionSort(a);
