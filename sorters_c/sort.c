@@ -90,18 +90,25 @@ void load_array(FILE *in_file, int arr[])
 	}
 }
 
-int main(void)
+int main(int argc, char *argv[])
 {
+	int intvar;
+
+	if (argc < 4 || sscanf(argv[3], "%i", &intvar) != 1)
+	{
+		return 1;
+	}
+
 	int size = 100000;
 
 	FILE *in_file;
 	char *in_filename;
-	in_filename = "../data.txt";
+	in_filename = argv[1];
 	in_file = fopen(in_filename, "r");
 
 	FILE *out_file;
 	char *out_filename;
-	out_filename = "../output_c.txt";
+	out_filename = argv[2];
 	out_file = fopen(out_filename, "w");
 
 	struct timespec start, end;
@@ -111,7 +118,7 @@ int main(void)
 
 	fprintf(out_file, "nbr, time in ns\n");
 
-	for (int k = 1; k <= 1; k++)
+	for (int k = 1; k <= intvar; k++)
 	{
 		load_array(in_file, arr);
 
