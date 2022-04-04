@@ -1,10 +1,7 @@
 # UAPS project 
-source("https://fileadmin.cs.lth.se/cs/Education/EDAA35/R_resources.R") #vet ej om detta behövs
 
-
-plotresult <- function(file,start = 1){
+plotresult <- function(file){
   data <- read.csv(file)
-  data <- data[start:nrow(data),]
   plot(data, type='l')
 }
 
@@ -24,7 +21,7 @@ for (i in 1:5) {
 
 #compile first?
 for (i in 1:5) {
-  system("/Users/anna/Documents/uaps-project/sorters_c/sort.c /Users/anna/Documents/uaps-project/sorters_java/src/uaps/Sort.java /Users/anna/Documents/uaps-project/data.txt /Users/anna/Documents/uaps-project/sorters_java/src/uaps/Sort.java /Users/anna/Documents/uaps-project/data.txt /Users/anna/Documents/uaps-project/output_C_test_R.txt antal_körningar")
+  system("/Users/anna/Documents/uaps-project/sorters_c/a.out  /Users/anna/Documents/uaps-project/data.txt /Users/anna/Documents/uaps-project/data.txt /Users/anna/Documents/uaps-project/output_C_test_R.txt 10")
   resultC <- read.csv("/Users/anna/Documents/uaps-project/output_C_test_R.txt")
   meanC <- mean(resultC[,2])
   listOfMeansC[i] <- meanC
@@ -40,9 +37,9 @@ confidenceInterval(listOfMeansC,confidenceLevel =0.95)
 plotresult("/Users/anna/Documents/uaps-project/output_java_test_R.txt") # plot to screen
 pdf("resultatfilenJ.pdf")
 plotresult("resultJ.txt") # plot to pdf file
-dev.off ()
+dev.off()
 
 plotresult("/Users/anna/Documents/uaps-project/output_C_test_R.txt") # plot to screen
-pdf("/Users/anna/Documents/uaps-project/output_C_test_R.txt")
+pdf("resultatfilenC.pdf")
 plotresult("/Users/anna/Documents/uaps-project/output_C_test_R.txt") # plot to pdf file
-dev.off ()
+dev.off()
