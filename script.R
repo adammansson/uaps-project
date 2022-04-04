@@ -1,4 +1,6 @@
 # UAPS project 
+source("https://fileadmin.cs.lth.se/cs/Education/EDAA35/R_resources.R") #needed for confidence interval
+
 
 plotresult <- function(file){
   data <- read.csv(file)
