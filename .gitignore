@@ -1,3 +1,7 @@
+# Output files
+output_c.txt
+output_java.txt
+
 # C output file
 *.out
 
