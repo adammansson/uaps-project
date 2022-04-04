@@ -111,27 +111,24 @@ int main(int argc, char *argv[])
 	out_filename = argv[2];
 	out_file = fopen(out_filename, "w");
 
-	struct timespec start, end;
-	unsigned long int dif;
-
 	int arr[size];
 
-	fprintf(out_file, "nbr, time in ns\n");
+	fprintf(out_file, "nbr, time in s\n");
 
 	for (int k = 1; k <= intvar; k++)
 	{
 		load_array(in_file, arr);
 
-		clock_gettime(CLOCK_MONOTONIC, &start);
+		clock_t tic = clock();
 		
-		insertion_sort(arr, size);
+		//insertion_sort(arr, size);
         
-    // int helper[size];
-    // merge_sort(arr, helper, size, 0, size - 1);
+    int helper[size];
+    merge_sort(arr, helper, size, 0, size - 1);
 
-		clock_gettime(CLOCK_MONOTONIC, &end);
-		dif = (end.tv_nsec - start.tv_nsec);
-		fprintf(out_file, "%d, %lu\n", k, dif);
+    clock_t toc = clock();
+
+		fprintf(out_file, "%d, %f\n", k, (double)(toc - tic) / CLOCKS_PER_SEC);
 	}
 
 	fclose(in_file);
