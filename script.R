@@ -33,7 +33,7 @@ meanJ10 <- mean(listOfMeans10J)
 confidenceInterval(listOfMeans10J,confidenceLevel =0.95)
 
 meanC10 <- mean(listOfMeans10C)
-confidenceInterval(listOfMeansC,confidenceLevel =0.95)
+confidenceInterval(listOfMeans10C,confidenceLevel =0.95)
 
 
 plotresult("/Users/anna/Documents/uaps-project/output_java_test_R.txt") # plot to screen
