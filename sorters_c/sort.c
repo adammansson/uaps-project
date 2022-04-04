@@ -105,7 +105,7 @@ int main(void)
 	out_file = fopen(out_filename, "w");
 
 	struct timespec start, end;
-	unsigned long dif;
+	unsigned long int dif;
 
 	int arr[size];
 
