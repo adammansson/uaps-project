@@ -87,7 +87,7 @@ public class Sort {
             // mergeSort(a, b, 0, a.length - 1);
 
             long t1 = System.nanoTime();
-            long timeTaken = t1 - t0;
+            double timeTaken = (t1 - t0) / 1e9;
             outWriter.write(i + ", " + timeTaken + "\n");
         }
         outWriter.close();

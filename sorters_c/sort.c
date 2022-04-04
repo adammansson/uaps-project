@@ -92,9 +92,9 @@ void load_array(FILE *in_file, int arr[])
 
 int main(int argc, char *argv[])
 {
-	int intvar;
+	int iterations;
 
-	if (argc < 4 || sscanf(argv[3], "%i", &intvar) != 1)
+	if (argc < 4 || sscanf(argv[3], "%i", &iterations) != 1)
 	{
 		return 1;
 	}
@@ -112,13 +112,13 @@ int main(int argc, char *argv[])
 	out_file = fopen(out_filename, "w");
 
 	struct timespec start, end;
-	unsigned long int dif;
+	unsigned long long int dif;
 
 	int arr[size];
 
 	fprintf(out_file, "nbr, time in ns\n");
 
-	for (int k = 1; k <= intvar; k++)
+	for (int k = 1; k <= iterations; k++)
 	{
 		load_array(in_file, arr);
 
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
 
 		clock_gettime(CLOCK_MONOTONIC, &end);
 		dif = (end.tv_nsec - start.tv_nsec);
-		fprintf(out_file, "%d, %lu\n", k, dif);
+		fprintf(out_file, "%d, %llu\n", k, dif);
 	}
 
 	fclose(in_file);
