@@ -99,39 +99,39 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+	// Number of lines in input file
 	int size = 100000;
 
+	// Get input file from first argument
 	FILE *in_file;
 	char *in_filename;
 	in_filename = argv[1];
 	in_file = fopen(in_filename, "r");
 
+	// Get output file from second argument
 	FILE *out_file;
 	char *out_filename;
 	out_filename = argv[2];
 	out_file = fopen(out_filename, "w");
 
-	struct timespec start, end;
-	unsigned long long int dif;
-
 	int arr[size];
 
-	fprintf(out_file, "nbr, time in ns\n");
+	fprintf(out_file, "nbr, time in s\n");
 
 	for (int k = 1; k <= iterations; k++)
 	{
 		load_array(in_file, arr);
 
-		clock_gettime(CLOCK_MONOTONIC, &start);
+		clock_t tic = clock();
 		
-		insertion_sort(arr, size);
+		//insertion_sort(arr, size);
         
-    // int helper[size];
-    // merge_sort(arr, helper, size, 0, size - 1);
+    int helper[size];
+    merge_sort(arr, helper, size, 0, size - 1);
 
-		clock_gettime(CLOCK_MONOTONIC, &end);
-		dif = (end.tv_nsec - start.tv_nsec);
-		fprintf(out_file, "%d, %llu\n", k, dif);
+    clock_t toc = clock();
+
+		fprintf(out_file, "%d, %f\n", k, (double)(toc - tic) / CLOCKS_PER_SEC);
 	}
 
 	fclose(in_file);
