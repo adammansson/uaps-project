@@ -1,4 +1,8 @@
 # UAPS project 
+# Before running the script, compile both the Java and C files.
+# Java: javac sorters_java/src/uaps/Sort.java -d out
+# C: gcc -O3 sorters_c/sort.c -o sorters_c/a.out
+
 source("https://fileadmin.cs.lth.se/cs/Education/EDAA35/R_resources.R") #needed for confidence interval
 
 
@@ -8,40 +12,40 @@ plotresult <- function(file){
 }
 
 
-listOfMeans10J <- c(1:5)
-listOfMeans10C <- c(1:5)
+listOfMeansJava <- c(1:5)
+listOfMeansC <- c(1:5)
 
 
-#compile first java
 for (i in 1:5) {
-  system ("java -cp /Users/anna/Documents/uaps-project/sorters_java/src/uaps/Sort.java/bin /Users/anna/Documents/uaps-project/sorters_java/src/uaps/Sort.java /Users/anna/Documents/uaps-project/data.txt /Users/anna/Documents/uaps-project/output_java_test_R.txt 10")
-  resultJ <- read.csv("/Users/anna/Documents/uaps-project/output_java_test_R.txt")
+  system ("java -cp out uaps.Sort data.txt generated/output_java.txt 10")
+  resultJ <- read.csv("generated/output_java.txt")
   meanJ <- mean(resultJ[,2])
-  listOfMeans10J[i] <- meanJ
+  listOfMeansJava[i] <- meanJ
 }
 
 
-#compile first?
 for (i in 1:5) {
-  system("/Users/anna/Documents/uaps-project/sorters_c/a.out  /Users/anna/Documents/uaps-project/data.txt /Users/anna/Documents/uaps-project/data.txt /Users/anna/Documents/uaps-project/output_C_test_R.txt 10")
-  resultC <- read.csv("/Users/anna/Documents/uaps-project/output_C_test_R.txt")
+  system("sorters_c/a.out data.txt generated/output_C.txt 10")
+  resultC <- read.csv("generated/output_C.txt")
   meanC <- mean(resultC[,2])
   listOfMeansC[i] <- meanC
 }
 
-meanJ10 <- mean(listOfMeans10J)
-confidenceInterval(listOfMeans10J,confidenceLevel =0.95)
-
-meanC10 <- mean(listOfMeans10C)
-confidenceInterval(listOfMeans10C,confidenceLevel =0.95)
+meanJ10 <- mean(listOfMeansJava)
+confidenceInterval(listOfMeansJava,confidenceLevel =0.95)
 
 
-plotresult("/Users/anna/Documents/uaps-project/output_java_test_R.txt") # plot to screen
-pdf("resultatfilenJ.pdf")
-plotresult("resultJ.txt") # plot to pdf file
+meanC10 <- mean(listOfMeansC)
+confidenceInterval(listOfMeansC,confidenceLevel =0.95)
+
+
+plotresult("generated/output_java.txt") # plot to screen
+pdf("generated/resultJava.pdf")
+plotresult("generated/output_java.txt") # plot to pdf file
 dev.off()
 
-plotresult("/Users/anna/Documents/uaps-project/output_C_test_R.txt") # plot to screen
-pdf("resultatfilenC.pdf")
-plotresult("/Users/anna/Documents/uaps-project/output_C_test_R.txt") # plot to pdf file
+
+plotresult("generated/output_C.txt") # plot to screen
+pdf("generated/resultC.pdf")
+plotresult("generated/output_C.txt") # plot to pdf file
 dev.off()

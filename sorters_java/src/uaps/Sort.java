@@ -82,9 +82,9 @@ public class Sort {
             int[] a = loadFromFile(args[0]);
             long t0 = System.nanoTime();
 
-            insertionSort(a);
-            // int[] b = new int[a.length];
-            // mergeSort(a, b, 0, a.length - 1);
+            // insertionSort(a);
+            int[] b = new int[a.length];
+            mergeSort(a, b, 0, a.length - 1);
 
             long t1 = System.nanoTime();
             double timeTaken = (t1 - t0) / 1e9;
